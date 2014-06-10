@@ -4,11 +4,13 @@ if (Meteor.isClient) {
   var step = function(e, direction) {
     e.preventDefault();
 
+    toStepDirection = toStep;
+
     if(direction === 'down') {
-      toStep = toStep * -1;
+      toStepDirection = toStep * -1;
     }
 
-    this.value = validValue.call(this, Number(this.value) + toStep);
+    this.value = validValue.call(this, Number(this.value) + toStepDirection);
 
     this.valueDep.changed();
   };
@@ -71,6 +73,7 @@ if (Meteor.isClient) {
       switch ( e.which ){
         case 16:
           toStep = 1;
+          break;
       }
     }
 
